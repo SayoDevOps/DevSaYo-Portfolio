@@ -1,19 +1,4 @@
-/* ════════════════════════════════════════════════════
-   DEV.SAYO — SCRIPT
-   1. Hamburger Menu
-   2. Keyboard Accessibility (Project Rows)
-   3. Active Nav Link on Scroll
-   4. Scroll Reveal
-   5. Rate Limiting
-   6. Input Sanitizer
-   7. Form Status Helper
-   8. Contact Form Submit
-════════════════════════════════════════════════════ */
-
-
-/* ─────────────────────────────────────────
-   1. HAMBURGER MENU
-───────────────────────────────────────── */
+/*  1. HAMBURGER MENU */
 
 const ham = document.getElementById('hamburger');
 const mob = document.getElementById('mobileMenu');
@@ -33,9 +18,7 @@ mob.querySelectorAll('a').forEach(link => {
 });
 
 
-/* ─────────────────────────────────────────
-   2. KEYBOARD ACCESSIBILITY — PROJECT ROWS
-───────────────────────────────────────── */
+/* 2. KEYBOARD ACCESSIBILITY — PROJECT ROWS */
 
 document.querySelectorAll('.proj-row').forEach(row => {
   row.addEventListener('keydown', e => {
@@ -44,9 +27,7 @@ document.querySelectorAll('.proj-row').forEach(row => {
 });
 
 
-/* ─────────────────────────────────────────
-   3. ACTIVE NAV LINK ON SCROLL
-───────────────────────────────────────── */
+/* 3. ACTIVE NAV LINK ON SCROLL */
 
 const sections = document.querySelectorAll('section[id]');
 const navLinks  = document.querySelectorAll('.nav-center a');
@@ -69,9 +50,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 
-/* ─────────────────────────────────────────
-   4. SCROLL REVEAL
-───────────────────────────────────────── */
+/* 4. SCROLL REVEAL */
 
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -85,9 +64,7 @@ const revealObserver = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 
-/* ─────────────────────────────────────────
-   5. RATE LIMITING  (max 3 sends / hour)
-───────────────────────────────────────── */
+/* 5. RATE LIMITING  (max 3 sends / hour) */
 
 function canSend() {
   try {
@@ -110,9 +87,7 @@ function canSend() {
 }
 
 
-/* ─────────────────────────────────────────
-   6. INPUT SANITIZER
-───────────────────────────────────────── */
+/* 6. INPUT SANITIZER */
 
 const esc = str => str.replace(/[<>"'&]/g, char => ({
   '<':  '&lt;',
@@ -123,9 +98,7 @@ const esc = str => str.replace(/[<>"'&]/g, char => ({
 }[char]));
 
 
-/* ─────────────────────────────────────────
-   7. FORM STATUS HELPER
-───────────────────────────────────────── */
+/* 7. FORM STATUS HELPER */
 
 function showStatus(type, message) {
   const el = document.getElementById('fStatus');
@@ -135,14 +108,12 @@ function showStatus(type, message) {
 }
 
 
-/* ─────────────────────────────────────────
-   8. CONTACT FORM SUBMIT
-───────────────────────────────────────── */
+/* 8. CONTACT FORM SUBMIT */
 
 document.getElementById('cForm').addEventListener('submit', async e => {
   e.preventDefault();
 
-  // Honeypot check — bots fill this, humans don't
+  // Check
   if (document.getElementById('hp_n').value.trim() !== '') return;
 
   // Rate limit check
@@ -180,8 +151,6 @@ document.getElementById('cForm').addEventListener('submit', async e => {
   btn.disabled = true;
 
   try {
-    // Submit to Formspree — replace the form ID below with your own
-    // Sign up free at formspree.io, create a form → copy the ID
     const response = await fetch('https://formspree.io/f/xvzvjrra', {
       method:  'POST',
       headers: {
@@ -213,7 +182,7 @@ document.getElementById('cForm').addEventListener('submit', async e => {
       'Message: ' + message
     );
 
-    window.location.href = `mailto:sayoinnovation@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:folahantestimony572@gmail.com?subject=${subject}&body=${body}`;
     showStatus('ok', '✓ Opening your email client...');
 
   } finally {
